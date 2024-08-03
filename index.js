@@ -9,7 +9,7 @@ const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 
 const { RPC_URL, PRIVATE_KEYS, TOKEN_ADDR, MIN_SOL_BUY_AMOUNT, MAX_SOL_BUY_AMOUNT, FEES, SLIPPAGE, BUY_PERCENTAGES, SELL_PERCENTAGES } = config;
 
-const connexion = new Connection(RPC_URL);
+const connection = new Connection(RPC_URL);
 
 async function swap(tokenIn, tokenOut, solanaTracker, keypair, amount) {
     try {
@@ -17,7 +17,7 @@ async function swap(tokenIn, tokenOut, solanaTracker, keypair, amount) {
             tokenIn, tokenOut, amount, SLIPPAGE, keypair.publicKey.toBase58(), FEES, false
         );
         console.log("Send swap transaction...");
-        const tx = await performSwap(swapResponse, keypair, connexion, amount, tokenIn, {
+        const tx = await performSwap(swapResponse, keypair, connection, amount, tokenIn, {
             sendOptions: { skipPreflight: true },
             confirmationRetries: 30,
             confirmationRetryTimeout: 1000,
@@ -28,7 +28,7 @@ async function swap(tokenIn, tokenOut, solanaTracker, keypair, amount) {
         });
         console.log("Swap sent: " + tx);
     } catch (e) {
-        console.log("Error when trying to swap", e);
+        console.error("Error when trying to swap", e);
     }
 }
 
@@ -44,7 +44,7 @@ async function getTokenBalance(connection, owner, tokenAddr) {
 }
 
 async function main() {
-    const solanaTracker = new SolanaTracker(RPC_URL);
+    const solanaTracker = new SolanaTracker(connection);
     
     while (true) {
         for (let i = 0; i < PRIVATE_KEYS.length; i++) {
@@ -59,7 +59,7 @@ async function main() {
             }
 
             // Get token balance and execute sell
-            const balance = Math.round(await getTokenBalance(connexion, keypair.publicKey, TOKEN_ADDR));
+            const balance = Math.round(await getTokenBalance(connection, keypair.publicKey, TOKEN_ADDR));
             const sellAmount = balance * sellPercentage;
             await swap(TOKEN_ADDR, SOL_ADDR, solanaTracker, keypair, sellAmount);
 
@@ -69,4 +69,4 @@ async function main() {
     }
 }
 
-main();
+main().catch(console.error);
