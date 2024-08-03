@@ -1,0 +1,17 @@
+{
+    "RPC_URL": "https://solana-mainnet.g.alchemy.com/v2/tVh7ckM3iAFznLTMVCLYxbk3FiEb3a9h",
+    "PRIVATE_KEYS": [
+        "5xQirt8J4WK4r7jnqsiACGsYCochRGfqbvQuVUxC4b8YL8Zj6qaZZVaXESr4CekqdRNnyu9Lqqu99XHbpfnByTtf",
+        "5cngY1kF4B62btdCrLVAw4n7cibZ85N8qihoB94a771yXJ6frf7NYdB6xK7xa1RUafkD4w7xgWhCLnwBx64pJ6Lc",
+        "71zG6RAdRjXHwaYECXLMagerxiEQDPxHaffL8nYiEgt2uzwT73A1RgmBZ3LyLj57ichQrLFjy2q2uw6uzPwN3nA",
+        "r9GsDRv64DRDsoe1Qdv21ZfTKtqtF8yBLyLbfLovxpTjvtC5x43BRkZHP557LkoDAcP5zfuHxaAxE4df28fBzwp",
+        "2mPX9huoUMfWdjyjGP2QbVb7YQNDZ3RzSJbPQ2cugqgWTXYKEttHS8eBpWz7krEQqRcvqSo4b7QkzgHqX972EKWG"
+    ],
+    "TOKEN_ADDR": "AgNq3iDcpLZHBBKfLkGEmU2dvbdzFDjopfdM33Xupump",
+    "MIN_SOL_BUY_AMOUNT": 0.001,
+    "MAX_SOL_BUY_AMOUNT": 0.05,
+    "FEES": 0.0001,
+    "SLIPPAGE": 3,
+    "BUY_PERCENTAGES": [20, 20, 20, 20, 20],
+    "SELL_PERCENTAGES": [75, 75, 75, 75, 75]
+}
